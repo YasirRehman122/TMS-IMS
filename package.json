@@ -1,0 +1,27 @@
+{
+  "name": "tms-ims",
+  "description": "Service related to users management",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http": "^0.0.1-security",
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YasirRehman122/TMS-IMS.git"
+  },
+  "author": "S.M.Hashim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YasirRehman122/TMS-IMS/issues"
+  },
+  "homepage": "https://github.com/YasirRehman122/TMS-IMS#readme"
+}
