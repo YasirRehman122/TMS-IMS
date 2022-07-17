@@ -1,12 +1,15 @@
-
+// Library Imports
 const express = require("express");
+
+// Local Imports
+const customerRoutes = require('./customer/routes');
+const response = require('../middlewares/Response');
+
+
+// COntains all routes of the application
 const router = express.Router();
 
-
-const customerRoutes = require('./customer/routes');
-
-
-router.use('/customer', customerRoutes);
+router.use('/customer', response, customerRoutes);
 
 
 router.get('/', async (_req, res, _next) => {

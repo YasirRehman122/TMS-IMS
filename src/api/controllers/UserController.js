@@ -8,8 +8,7 @@ class UserController extends BaseController{
         console.log(">>>>>>>>>>>>>>>>>>>>>>>>> SIGNUP API <<<<<<<<<<<<<<<<<<<<<<<<<");
 
 
-        res.status(200).json({status: true});
-
+        res.success(200, 'Success');
 
     }
 

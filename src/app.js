@@ -27,7 +27,6 @@ app.use(
 
 app.use('/', indexRouter);
 
-
 app.listen(port, () => {
   console.log(`IMS service listening at http://localhost:${port}`);
 });
