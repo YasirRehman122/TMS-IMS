@@ -1,10 +1,10 @@
 var KnexQueryBuilder;
 try {
   // this is the path of the query builder in the latest version of knexjs
-  KnexQueryBuilder = require('knex/src/query/builder');
+  KnexQueryBuilder = require('knex/src/query/querybuilder');
 } catch(e) {
   // not found, let's revert to the old path of old version of knexjs
-  KnexQueryBuilder = require('knex/lib/query/builder');
+  KnexQueryBuilder = require('knex/lib/query/querybuilder');
 }
 
 module.exports = function (knex) {
