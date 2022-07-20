@@ -1,5 +1,6 @@
 const CommonUtils = require("./common");
 const Helper = require('../helper/helper');
+const userModel = require('../models/user');
 
 class UserUtils extends CommonUtils{
     constructor() {super()}
@@ -16,6 +17,20 @@ class UserUtils extends CommonUtils{
         }
 
         return [true, null];
+    }
+
+    async checkEmail(email){
+
+        let userEmail = await userModel.getEmail(email);
+
+        return userEmail ?? false;
+    }
+
+    async checkCellNo(cellNumber){
+
+        let cellNo = await userModel.getCellNo(cellNumber);
+
+        return cellNo ?? false;
     }
 
 }

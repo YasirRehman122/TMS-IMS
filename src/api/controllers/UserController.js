@@ -13,14 +13,14 @@ class UserController extends BaseController {
     }
 
     
-    async checkEmail(req, res, next){
+    async checkEmailAndCell(req, res, next){
         try{
 
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>> CHECK EMAIL API <<<<<<<<<<<<<<<<<<<<<<<<<");
 
-            console.log(">>>>>> BODY: ", req.body);
+            console.log(">>>>>> BODY: ", JSON.stringify(req.body));
 
-            let response = await this.userService.checkEmail(req.body);
+            let response = await this.userService.checkEmailAndCell(req.body);
 
             res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.SUCCESS, {otp: response})
         }
@@ -37,7 +37,7 @@ class UserController extends BaseController {
         try{
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>> SIGNUP API <<<<<<<<<<<<<<<<<<<<<<<<<");
 
-            console.log(">>>>>> BODY: ", req.body);
+            console.log(">>>>>> BODY: ", JSON.stringify(req.body));
 
             let newUser = await this.userService.signUp(req.body);
             

@@ -6,6 +6,7 @@ const RESPONSE_MESSAGES =  {
 
     // Error messages
     ERROR_EMAIL_EXISTS: 'Email already exists',
+    ERROR_CELLNO_EXISTS: 'Cell number already exists'
 };
 
 module.exports = RESPONSE_MESSAGES;

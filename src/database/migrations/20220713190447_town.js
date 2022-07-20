@@ -9,7 +9,7 @@
         table.integer("CITY_ID").references("CITY.ID");
         table.string("TOWN_NAME", 50);
         table.timestamp('CREATE_DATETIME').defaultTo(knex.fn.now())
-        table.timestamp("MODIFIED_DATETIME");
+        table.timestamp("MODIFIED_DATETIME").defaultTo(knex.fn.now());
     })
   
 };

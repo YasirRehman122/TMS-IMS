@@ -12,7 +12,7 @@
         table.boolean("ACTIVE_IND");
         table.string("LABEL", 50);
         table.timestamp('CREATE_DATETIME').defaultTo(knex.fn.now())
-        table.timestamp("MODIFIED_DATETIME");
+        table.timestamp("MODIFIED_DATETIME").defaultTo(knex.fn.now());
     })
   
 };
