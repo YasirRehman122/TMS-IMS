@@ -47,8 +47,26 @@ class UserController extends BaseController {
             console.log(err);
             this.handleExceptions(err, res);
         }
-        
-        
+    }
+
+    async login(req, res, next) {
+       
+        try{
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>> LOGIN API <<<<<<<<<<<<<<<<<<<<<<<<<");
+
+            console.log(">>>>> BODY: ", JSON.stringify(req.body));
+
+            let loginToken = await this.userService.login(req.body);
+
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>> LOGIN SUCCESSFUl <<<<<<<<<<<<<<<<<<<<<<<<<");
+
+            res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.LOGIN_SUCCESS, {token: loginToken});
+
+        }
+        catch (err){
+            console.log(err);
+            this.handleExceptions(err, res);
+        }
     }
 
 }

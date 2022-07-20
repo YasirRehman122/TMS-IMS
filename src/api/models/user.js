@@ -6,9 +6,12 @@ const getCellNo = async (cellNo) => db('USER').select('ID').where({CELL_NUMBER: 
 
 const insertUser = async (dataObj) => db('USER').insert(dataObj).returning('*');
 
+const getUserByEmail = async (email) => db.select('*').from('USER').where({EMAIL: email}).first();
+
 
 module.exports = {
     getEmail,
     getCellNo,
-    insertUser
+    insertUser,
+    getUserByEmail
 }

@@ -92,12 +92,43 @@ class UserService extends BaseService{
 
             return newUser[0];
 
-
         }
         catch(err){
             throw err;
         }
 
+    }
+
+
+    async login(data) {
+
+        try{
+
+            let [paramsValidated, err] = this.userUtils.validateLoginParams(data);
+            if (!paramsValidated){
+                throw new Exception(STATUS_CODES.BAD_REQUEST, err)
+            }
+
+            let user = await this.userUtils.getUserByEmail(data.email);
+            if (!user){
+                console.log("No user found against email: ", data.email);
+                throw new Exception(STATUS_CODES.NOT_FOUND, RESPONSE_MESSAGES.NO_USER_FOUND);
+            }
+
+            console.log(">>>>> User Found: ", JSON.stringify(user));
+
+            let passwordVerified = await this.userUtils.validatePassword(data.password, user.PASSWORD);
+            if (!passwordVerified){
+                console.log("Invalid Password");
+                throw new Exception(STATUS_CODES.SUCCESS, RESPONSE_MESSAGES.INVALID_PASSWORD);
+            }
+
+            return await this.userUtils.createToken(user);
+
+        }
+        catch (err){
+            throw err;
+        }
     }
 }
 
