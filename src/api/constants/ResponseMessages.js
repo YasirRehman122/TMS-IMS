@@ -3,6 +3,7 @@ const RESPONSE_MESSAGES =  {
     SUCCESS: 'Success',
     USER_CREATED: 'User Created Successfully',
     LOGIN_SUCCESS: 'Login Successful',
+    PASSWORD_UPDATED: 'Password updated successfuly',
 
 
     // Error messages
@@ -10,6 +11,7 @@ const RESPONSE_MESSAGES =  {
     ERROR_CELLNO_EXISTS: 'Cell number already exists',
     NO_USER_FOUND: 'No user found',
     INVALID_PASSWORD: 'Invalid Password',
+    PASSWORD_NOT_MATCHED: 'Password not matched',
 };
 
 module.exports = RESPONSE_MESSAGES;

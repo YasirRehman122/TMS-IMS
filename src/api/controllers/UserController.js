@@ -69,6 +69,27 @@ class UserController extends BaseController {
         }
     }
 
+
+    async changePassword(req, res, next) {
+
+        try{
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>> CHANGE PASSWORD API <<<<<<<<<<<<<<<<<<<<<<<<<");
+
+            console.log(">>>>> BODY: ", JSON.stringify(req.body));
+
+            await this.userService.changePassword(req.body);
+
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>> CHANGE PASSWORD SUCCESSFUl <<<<<<<<<<<<<<<<<<<<<<<<<");
+
+            res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.PASSWORD_UPDATED, null);
+
+        }
+        catch (err){
+            console.log(err);
+            this.handleExceptions(err, res);
+        }
+    }
+
 }
 
 

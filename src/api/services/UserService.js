@@ -130,6 +130,41 @@ class UserService extends BaseService{
             throw err;
         }
     }
+
+
+    async changePassword(data) {
+        try{
+            
+            let [paramsValidated, err] = this.userUtils.validateLoginParams(data);
+            if (!paramsValidated){
+                throw new Exception(STATUS_CODES.BAD_REQUEST, err)
+            }
+
+            let user = await this.userUtils.getUserById(data.email);
+            if (!user){
+                console.log("Invalid user");
+                throw new Exception(STATUS_CODES.BAD_REQUEST, RESPONSE_MESSAGES.NO_USER_FOUND);
+            }
+
+            let oldPasswordVerified = await this.userUtils.validatePassword(data.oldPasswrd, user.PASSWORD);
+            if (!oldPasswordVerified){
+                console.log("Password not matched");
+                throw new Exception(STATUS_CODES.SUCCESS, RESPONSE_MESSAGES.PASSWORD_NOT_MATCHED);
+            }
+
+            // Calculating hash value of new password
+            let hashedPassword = await generateHash(data.newPassword);
+
+            // Updating new password in database
+            await this.userUtils.updateById(user_id, {PASSWPRD: hashedPassword});
+
+            return true;
+
+        }
+        catch(err){
+            throw errr;
+        }
+    }
 }
 
 module.exports = UserService;

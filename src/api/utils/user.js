@@ -35,6 +35,20 @@ class UserUtils extends CommonUtils{
         return [true, null];
     }
 
+    validateChangePassParams(data){
+
+        let requiredParams = ['oldPassword','newPassword'];
+
+        let [paramsPresent, err] = Helper.paramsPresent(requiredParams, data);
+
+        if (!paramsPresent && err){
+            console.log(`Missing required parameter ${err}`);
+            return [false, `Missing required parameter ${err}`];
+        }
+
+        return [true, null];
+    }
+
     async checkEmail(email){
 
         let userEmail = await userModel.getEmail(email);
@@ -56,6 +70,13 @@ class UserUtils extends CommonUtils{
         return user ?? null;
     }
 
+    async getUserById(id) {
+
+        let user = await userModel.getUserById(id);
+
+        return user ?? null;
+    }
+
     async validatePassword(password, hashedPassword){
         return await verifyHash(password, hashedPassword)
     }
@@ -65,6 +86,11 @@ class UserUtils extends CommonUtils{
         let userObj = {id: user.id};
 
         return await generateToken(userObj);
+    }
+
+    async updateById(userId, obj) {
+
+        await userModel.updateById(userId, obj);
     }
 
 }
