@@ -4,6 +4,7 @@ const UserUtils = require("../utils/user");
 const {generateHash}  = require("../library/auth");
 const RESPONSE_MESSAGES = require("../constants/ResponseMessages");
 const STATUS_CODES = require("../constants/StatusCodes");
+const userModel = require('../models/user');
 
 class UserService extends BaseService{
     constructor() {
