@@ -37,7 +37,7 @@ class UserUtils extends CommonUtils{
 
     validateChangePassParams(data){
 
-        let requiredParams = ['oldPassword','newPassword'];
+        let requiredParams = ['userID', 'oldPassword','newPassword'];
 
         let [paramsPresent, err] = Helper.paramsPresent(requiredParams, data);
 

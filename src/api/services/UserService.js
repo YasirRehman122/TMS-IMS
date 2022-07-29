@@ -135,18 +135,18 @@ class UserService extends BaseService{
     async changePassword(data) {
         try{
             
-            let [paramsValidated, err] = this.userUtils.validateLoginParams(data);
+            let [paramsValidated, err] = this.userUtils.validateChangePassParams(data);
             if (!paramsValidated){
                 throw new Exception(STATUS_CODES.BAD_REQUEST, err)
             }
 
-            let user = await this.userUtils.getUserById(data.email);
+            let user = await this.userUtils.getUserById(data.userID);
             if (!user){
                 console.log("Invalid user");
                 throw new Exception(STATUS_CODES.BAD_REQUEST, RESPONSE_MESSAGES.NO_USER_FOUND);
             }
 
-            let oldPasswordVerified = await this.userUtils.validatePassword(data.oldPasswrd, user.PASSWORD);
+            let oldPasswordVerified = await this.userUtils.validatePassword(data.oldPassword, user.PASSWORD);
             if (!oldPasswordVerified){
                 console.log("Password not matched");
                 throw new Exception(STATUS_CODES.SUCCESS, RESPONSE_MESSAGES.PASSWORD_NOT_MATCHED);
@@ -156,13 +156,13 @@ class UserService extends BaseService{
             let hashedPassword = await generateHash(data.newPassword);
 
             // Updating new password in database
-            await this.userUtils.updateById(user_id, {PASSWPRD: hashedPassword});
+            await this.userUtils.updateById(data.userID, {PASSWORD: hashedPassword});
 
             return true;
 
         }
         catch(err){
-            throw errr;
+            throw err;
         }
     }
 }
