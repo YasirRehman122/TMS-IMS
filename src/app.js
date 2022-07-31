@@ -3,7 +3,7 @@ const env  = require('./env');
 const express = require('express');
 const bodyParser = require('body-parser');
 const indexRouter = require('./api/routes/index');
-
+const eurekaHelper = require('../src/api/helper/eureka_helper');
 const port = process.env.PORT || 4000;
 
 
@@ -30,6 +30,6 @@ app.use('/', indexRouter);
 app.listen(port, () => {
   console.log(`IMS service listening at http://localhost:${port}`);
 });
-
+eurekaHelper.registerWithEureka('identity', port);
 
 module.exports = app;
