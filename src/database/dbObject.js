@@ -1,3 +1,4 @@
+//This is boiler plate code for configuration of database within our application
 const dbConfig = require("../config/db");
 const knex = require('knex')
 const setupPaginator = require('./knexPaginator');
