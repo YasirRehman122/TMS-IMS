@@ -93,6 +93,11 @@ class UserUtils extends CommonUtils{
         await userModel.updateById(userId, obj);
     }
 
+    async updateByMobile(mobile, obj){
+        
+        await userModel.updateByMobile(mobile, obj);
+    }
+
 }
 
 module.exports = UserUtils;

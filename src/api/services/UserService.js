@@ -166,6 +166,46 @@ class UserService extends BaseService{
             throw err;
         }
     }
+
+
+    async sendCode(data){
+       
+        try{
+            let userExists = await this.userUtils.checkCellNo(data.mobile);
+            if (userExists){
+                //todo call otp service once integrated
+                let code = 74596;
+                return code;
+            }
+
+            console.log("No user found");
+            throw new Exception(STATUS_CODES.BAD_REQUEST, RESPONSE_MESSAGES.NO_USER_FOUND)
+        }
+        catch (err){
+            throw err;
+        }
+    }
+
+
+    async forgetPassword(data){
+        try{
+
+            let newPassword = data.newPassword;
+            let mobile = data.mobile;
+
+            let hashedPassword = await generateHash(newPassword);
+
+            await this.userUtils.updateByMobile(mobile, {PASSWORD: hashedPassword});
+
+            return true;
+        }
+        catch (err){
+            throw err;
+        }
+    }
+
+
+
 }
 
 module.exports = UserService;

@@ -12,6 +12,8 @@ const getUserById = async (id) => db.select('*').from('USER').where({ID: id}).fi
 
 const updateById = async (id, obj) => db("USER").where({ID: id}).update(obj);
 
+const updateByMobile = async (mobile, obj) => db("USER").where({CELL_NUMBER: mobile}).update(obj);
+
 
 module.exports = {
     getEmail,
@@ -19,5 +21,6 @@ module.exports = {
     insertUser,
     getUserByEmail,
     getUserById,
-    updateById
+    updateById,
+    updateByMobile
 }
