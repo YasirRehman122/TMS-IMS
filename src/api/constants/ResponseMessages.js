@@ -4,6 +4,7 @@ const RESPONSE_MESSAGES =  {
     USER_CREATED: 'User Created Successfully',
     LOGIN_SUCCESS: 'Login Successful',
     PASSWORD_UPDATED: 'Password updated successfuly',
+    CODE_SENT: 'Code sent successfully',
 
 
     // Error messages

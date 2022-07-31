@@ -1,6 +1,8 @@
-const { default: UserController } = require("./UserController");
+const UserController = require("./UserController");
 
 class ProviderController extends UserController{
 
-    constructor() {}
+    constructor() {super()}
 }
+
+module.exports = ProviderController;

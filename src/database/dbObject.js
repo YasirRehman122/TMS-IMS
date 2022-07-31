@@ -1,5 +1,4 @@
 const dbConfig = require("../config/db");
-// const logCat = require("../library/logger")("sql");
 const knex = require('knex')
 const setupPaginator = require('./knexPaginator');
 
