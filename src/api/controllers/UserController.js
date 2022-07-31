@@ -8,11 +8,17 @@ class UserController extends BaseController {
         
         super();
         
+        // creating isntance of user service
         this.userService = new UserService();
     
     }
 
     
+    /**
+     * This function is responsible to if the provided email and cell nu,ber already exists in database or not
+     * @param {*} req request object
+     * @param {*} res response object
+     */
     async checkEmailAndCell(req, res){
         try{
 
@@ -20,12 +26,16 @@ class UserController extends BaseController {
 
             console.log(">>>>>> BODY: ", JSON.stringify(req.body));
 
+            // calling checkEmailAndCell function inside user service
             let response = await this.userService.checkEmailAndCell(req.body);
 
+            // returning response to the user
             res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.SUCCESS, {otp: response})
         }
         catch(err){
+            // consoling the err
             console.log(err);
+            //handling the error
             this.handleExceptions(err, res);
         }
 
@@ -39,8 +49,10 @@ class UserController extends BaseController {
 
             console.log(">>>>>> BODY: ", JSON.stringify(req.body));
 
+            // calling signup fucntion from user service
             let newUser = await this.userService.signUp(req.body);
             
+            // returning response
             res.success(STATUS_CODES.CREATED, RESPONSE_MESSAGE.USER_CREATED, newUser);
         }
         catch (err){
@@ -56,10 +68,12 @@ class UserController extends BaseController {
 
             console.log(">>>>> BODY: ", JSON.stringify(req.body));
 
+            // Calling login function inside user service 
             let loginToken = await this.userService.login(req.body);
 
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>> LOGIN SUCCESSFUl <<<<<<<<<<<<<<<<<<<<<<<<<");
 
+            // returning response
             res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.LOGIN_SUCCESS, {token: loginToken});
 
         }

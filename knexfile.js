@@ -1,3 +1,7 @@
+/**
+ * This is a boiler plate for knexfile.js. It's a builtin file and created automatically when knexjs is installed
+ */
+
 require('dotenv').config();
 
 // Update with your config settings.

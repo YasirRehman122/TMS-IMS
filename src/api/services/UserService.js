@@ -36,9 +36,11 @@ class UserService extends BaseService{
 
             let otp = 45879;
 
+            // returning OTP
             return otp;
         }
         catch(err){
+            // returning the error to the controller
             throw err;
         }
         
@@ -49,6 +51,7 @@ class UserService extends BaseService{
     async signUp(data) {
         try{
 
+            // Validating the parameters which are mandatory for the singup
             let [paramsValidated, err] = this.userUtils.validateSignUpParams(data);
             if (!paramsValidated){
                 throw new Exception(STATUS_CODES.BAD_REQUEST, err)
@@ -87,10 +90,12 @@ class UserService extends BaseService{
 
             console.log(">>>>>>>>>>>> Inserting user in Database", userObject)
 
+            // Calling user model to insert the user data in database
             let newUser = await userModel.insertUser(userObject);
 
             console.log(">>>>>>>>>>>>> NEW USER: ", newUser);
 
+            // returning new user which is just created
             return newUser[0];
 
         }
@@ -105,11 +110,13 @@ class UserService extends BaseService{
 
         try{
 
+            // Validating the parameters which are mandatory for the login
             let [paramsValidated, err] = this.userUtils.validateLoginParams(data);
             if (!paramsValidated){
                 throw new Exception(STATUS_CODES.BAD_REQUEST, err)
             }
 
+            // Getting user by it email from DB
             let user = await this.userUtils.getUserByEmail(data.email);
             if (!user){
                 console.log("No user found against email: ", data.email);
@@ -118,12 +125,14 @@ class UserService extends BaseService{
 
             console.log(">>>>> User Found: ", JSON.stringify(user));
 
+            // Matching old password from DB
             let passwordVerified = await this.userUtils.validatePassword(data.password, user.PASSWORD);
             if (!passwordVerified){
                 console.log("Invalid Password");
                 throw new Exception(STATUS_CODES.SUCCESS, RESPONSE_MESSAGES.INVALID_PASSWORD);
             }
 
+            // Creting login token and returning it
             return await this.userUtils.createToken(user);
 
         }
@@ -136,17 +145,20 @@ class UserService extends BaseService{
     async changePassword(data) {
         try{
             
+            // Validating the parameters which are mandatory for the change password API
             let [paramsValidated, err] = this.userUtils.validateChangePassParams(data);
             if (!paramsValidated){
                 throw new Exception(STATUS_CODES.BAD_REQUEST, err)
             }
 
+            // Getting user from DB by user id
             let user = await this.userUtils.getUserById(data.userID);
             if (!user){
                 console.log("Invalid user");
                 throw new Exception(STATUS_CODES.BAD_REQUEST, RESPONSE_MESSAGES.NO_USER_FOUND);
             }
 
+            //Verifying whether old password provided is correct or not
             let oldPasswordVerified = await this.userUtils.validatePassword(data.oldPassword, user.PASSWORD);
             if (!oldPasswordVerified){
                 console.log("Password not matched");
@@ -171,6 +183,7 @@ class UserService extends BaseService{
     async sendCode(data){
        
         try{
+            // Saving mobile number provided in the request in a let variable
             let userExists = await this.userUtils.checkCellNo(data.mobile);
             if (userExists){
                 //todo call otp service once integrated
@@ -179,6 +192,7 @@ class UserService extends BaseService{
             }
 
             console.log("No user found");
+            // Throwing an error if user is not found
             throw new Exception(STATUS_CODES.BAD_REQUEST, RESPONSE_MESSAGES.NO_USER_FOUND)
         }
         catch (err){
@@ -190,11 +204,14 @@ class UserService extends BaseService{
     async forgetPassword(data){
         try{
 
+            // Saving password and mobile in a variable
             let newPassword = data.newPassword;
             let mobile = data.mobile;
 
+            // Generating hash value of the new password provided
             let hashedPassword = await generateHash(newPassword);
 
+            // Updating the new password in the database
             await this.userUtils.updateByMobile(mobile, {PASSWORD: hashedPassword});
 
             return true;
