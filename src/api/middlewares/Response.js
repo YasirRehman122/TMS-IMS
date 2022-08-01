@@ -9,6 +9,7 @@ module.exports = (req, res, next) => {
         });
     }
 
+    
     res.error = (status_code, errorObj = null) => {
         res.status(status_code).json({
             status: false, 

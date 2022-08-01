@@ -5,6 +5,7 @@ const STATUS_CODES =  {
 
     //Error Status codes
     BAD_REQUEST: 400,
+    UN_AUTHENTICATED: 401,
     NOT_FOUND: 404
 };
 

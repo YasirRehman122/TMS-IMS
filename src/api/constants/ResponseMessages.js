@@ -13,6 +13,7 @@ const RESPONSE_MESSAGES =  {
     NO_USER_FOUND: 'No user found',
     INVALID_PASSWORD: 'Invalid Password',
     PASSWORD_NOT_MATCHED: 'Password not matched',
+    UN_AUTHENTICATED_USER: 'User not authenticated'
 };
 
 module.exports = RESPONSE_MESSAGES;
