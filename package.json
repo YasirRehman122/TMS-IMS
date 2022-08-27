@@ -1,0 +1,35 @@
+{
+  "name": "tms-ims",
+  "description": "Service related to users management",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "eureka-js-client": "^4.5.0",
+    "express": "^4.18.1",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^2.1.0",
+    "nodemon": "^2.0.19",
+    "pg": "^8.7.3",
+    "zipkin": "^0.22.0",
+    "zipkin-instrumentation-express": "^0.22.0",
+    "zipkin-transport-http": "^0.22.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YasirRehman122/TMS-IMS.git"
+  },
+  "author": "S.M.Hashim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YasirRehman122/TMS-IMS/issues"
+  },
+  "homepage": "https://github.com/YasirRehman122/TMS-IMS#readme"
+}
