@@ -11,7 +11,6 @@ exports.up = function(knex) {
         table.string("EMAIL", 100).unique().notNullable();
         table.string("CELL_NUMBER", 100).notNullable();
         table.string("PASSWORD", 256).notNullable();
-        table.string("CNIC", 50).notNullable();
         table.boolean("IS_PROVIDER").notNullable();
         table.boolean("ACTIVE_IND").defaultTo(false);
         table.timestamp('CREATE_DATETIME').defaultTo(knex.fn.now())

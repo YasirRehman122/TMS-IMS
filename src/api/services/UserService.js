@@ -83,7 +83,6 @@ class UserService extends BaseService{
                 EMAIL: data.email,
                 CELL_NUMBER: data.cellNumber,
                 PASSWORD: hashedPassword,
-                CNIC: data.cnic,
                 IS_PROVIDER: data.isProvider,
                 ACTIVE_IND: true
             }

@@ -15,7 +15,7 @@ class UserUtils extends CommonUtils{
     validateSignUpParams(data){
 
         // list of paramters taht are mandatory for signup
-        let requiredParams = ['firstName', 'lastName', 'email', 'cellNumber', 'password', 'cnic', 'isProvider'];
+        let requiredParams = ['firstName', 'lastName', 'email', 'cellNumber', 'password', 'isProvider'];
 
         // calling helper functioj which will validate of all the above mentioned params are there or not
         let [paramsPresent, err] = Helper.paramsPresent(requiredParams, data);
@@ -123,7 +123,7 @@ class UserUtils extends CommonUtils{
     async createToken(user){
 
         // Creating object that will be used in creating login token
-        let userObj = {id: user.id};
+        let userObj = {id: user.ID};
 
         return await generateToken(userObj);
     }

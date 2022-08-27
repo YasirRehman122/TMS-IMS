@@ -15,19 +15,19 @@ const STATUS_CODE = require('../constants/StatusCodes');
 module.exports = async (req, res, next) => {
 
     // Extracting auth token from request headers
-    const authToken = (req.headers['Authorization'])?.toString().split(" ").pop();
+    const authToken = (req.headers['authorization'])?.toString().split(" ").pop();
 
     if (authToken) {
 
         try{
             // Verifying auth token using JWT library
-            const decodedToken = JWT.verify(authorization, jwt.key)
+            var decodedToken = JWT.verify(authToken, jwt.key)
             // consoling decoded token
-            console.log(decodedToken)
+            console.log("DECODED TOKEN", decodedToken)
         } 
         catch (err){
             // Returning error if token is not valid
-            return res.error(err, RESPONSE_MESSAGE.UN_AUTHORIZED_USER, STATUS_CODE.UNAUTHORIZED);
+            return res.error(STATUS_CODE.UN_AUTHENTICATED, RESPONSE_MESSAGE.UN_AUTHENTICATED_USER);
         }
 
         // If token is valid then saving extracted data from token in request object
