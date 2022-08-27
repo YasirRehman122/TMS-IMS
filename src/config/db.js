@@ -16,11 +16,12 @@ module.exports = {
         "dialect": knexConfig.staging.client,
     },
     "production": {
-        "username": knexConfig.production.connection.user,
-        "password": knexConfig.production.connection.password,
-        "database": knexConfig.production.connection.database,
-        "host": knexConfig.production.connection.host,
-        "dialect": knexConfig.production.client,
+        // "username": knexConfig.production.connection.user,
+        // "password": knexConfig.production.connection.password,
+        // "database": knexConfig.production.connection.database,
+        // "host": knexConfig.production.connection.host,
+        // "dialect": knexConfig.production.client,
+        "connection": knexConfig.production.connection
     }
   }
   

@@ -7,19 +7,20 @@ let db = knex({
   debug: process.env.NODE_ENV == "production" ? false : true,
   // debug: true,
   client: dbConfig[process.env.NODE_ENV].dialect,
-  connection: {
-    host: dbConfig[process.env.NODE_ENV].host,
-    user: dbConfig[process.env.NODE_ENV].username,
-    password: dbConfig[process.env.NODE_ENV].password,
-    database: dbConfig[process.env.NODE_ENV].database,
-    // port: 5444,
-    pool: {
-      autostart: true,
-      max: 10,
-      min: 2,
-      propagateCreateError: false
-    }
-  },
+  // connection: {
+  //   host: dbConfig[process.env.NODE_ENV].host,
+  //   user: dbConfig[process.env.NODE_ENV].username,
+  //   password: dbConfig[process.env.NODE_ENV].password,
+  //   database: dbConfig[process.env.NODE_ENV].database,
+  //   // port: 5444,
+  //   pool: {
+  //     autostart: true,
+  //     max: 10,
+  //     min: 2,
+  //     propagateCreateError: false
+  //   }
+  // },
+  connection: dbConfig[process.env.NODE_ENV].connection
 //   log: {
 //     warn(message) {
 //       logCat(`warn: ${JSON.stringify(message)}`);
