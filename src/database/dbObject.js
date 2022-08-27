@@ -20,7 +20,7 @@ let db = knex({
   //     propagateCreateError: false
   //   }
   // },
-  connection: dbConfig[process.env.NODE_ENV].connection
+  connection: 'postgres://pwsxdtrptmktqf:f2a5fb802c52f4f489b39395dccd39aea0b981f6dd95c71f93a24705dc25ee45@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2j5ua1h9mn45r'
 //   log: {
 //     warn(message) {
 //       logCat(`warn: ${JSON.stringify(message)}`);
