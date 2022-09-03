@@ -5,6 +5,7 @@ const RESPONSE_MESSAGES =  {
     LOGIN_SUCCESS: 'Login Successful',
     PASSWORD_UPDATED: 'Password updated successfuly',
     CODE_SENT: 'Code sent successfully',
+    PROFILE_UPDATE: 'Profile updated successfully',
 
 
     // Error messages

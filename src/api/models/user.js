@@ -21,6 +21,12 @@ const updateById = async (id, obj) => db("USER").where({ID: id}).update(obj);
 // Updating user by cell number
 const updateByMobile = async (mobile, obj) => db("USER").where({CELL_NUMBER: mobile}).update(obj);
 
+const getEmailById = async (email, id) => db('USER').select('ID').where({EMAIL: email}).whereNot({ID: id}).first(); 
+
+const getCellNoById = async (cell, id) => db('USER').select('ID').where({CELL_NUMBER: cell}).whereNot({ID: id}).first() 
+
+const updateUser = async (obj, id) => db('USER').where({ID: id}).update(obj).returning('*');
+
 
 module.exports = {
     getEmail,
@@ -29,5 +35,8 @@ module.exports = {
     getUserByEmail,
     getUserById,
     updateById,
-    updateByMobile
+    updateByMobile,
+    getEmailById,
+    getCellNoById,
+    updateUser
 }
