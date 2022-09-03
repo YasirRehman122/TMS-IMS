@@ -132,7 +132,9 @@ class UserService extends BaseService{
             }
 
             // Creting login token and returning it
-            return await this.userUtils.createToken(user);
+            user.token = await this.userUtils.createToken(user);
+
+            return user;
 
         }
         catch (err){

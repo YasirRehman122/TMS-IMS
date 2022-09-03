@@ -74,7 +74,7 @@ class UserController extends BaseController {
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>> LOGIN SUCCESSFUl <<<<<<<<<<<<<<<<<<<<<<<<<");
 
             // returning response
-            res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.LOGIN_SUCCESS, {token: loginToken});
+            res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.LOGIN_SUCCESS, loginToken);
 
         }
         catch (err){
