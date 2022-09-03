@@ -29,6 +29,23 @@ class UserUtils extends CommonUtils{
         return [true, null];
     }
 
+    validateUpdateProfileParams(data){
+
+        // list of paramters taht are mandatory for signup
+        let requiredParams = ['id', 'firstName', 'lastName', 'email', 'cellNumber', 'isProvider'];
+
+        // calling helper functioj which will validate of all the above mentioned params are there or not
+        let [paramsPresent, err] = Helper.paramsPresent(requiredParams, data);
+
+        // If any param is missing then returning error message
+        if (!paramsPresent && err){
+            console.log(`Missing required parameter ${err}`);
+            return [false, `Missing required parameter ${err}`];
+        }
+
+        return [true, null];
+    }
+
     
     /**
      * Veerifies parameters required for login
@@ -83,6 +100,13 @@ class UserUtils extends CommonUtils{
         return userEmail ?? false;
     }
 
+    async checkEmailById(email, id){
+
+        let userEmail = await userModel.getEmailById(email, id);
+
+        return userEmail ?? null;
+    }
+
      /**
      * Checks cell number in the database
      * @param {*} email 
@@ -95,6 +119,16 @@ class UserUtils extends CommonUtils{
 
         // Returning cell number if found in DB otherwise null
         return cellNo ?? false;
+    }
+
+
+    async checkCellNoById(cellNumber, id){
+
+         // Getting cell number from DB
+         let cellNo = await userModel.getCellNoById(cellNumber, id);
+
+         // Returning cell number if found in DB otherwise null
+         return cellNo ?? null;
     }
 
     async getUserByEmail(email){

@@ -223,6 +223,74 @@ class UserService extends BaseService{
     }
 
 
+    async updateProfile(data) {
+        try{
+
+             // Validating the parameters which are mandatory for the singup
+             let [paramsValidated, err] = this.userUtils.validateUpdateProfileParams(data);
+             if (!paramsValidated){
+                 throw new Exception(STATUS_CODES.BAD_REQUEST, err)
+             }
+ 
+             // checking email if it exist in database or not
+             console.log(">>>>>>>>>> Checking email");
+             let emailExists = await this.userUtils.checkEmailById(data.email, data.id);
+             if(emailExists){
+                 console.log("Provided email already exists");
+                 throw new Exception(STATUS_CODES.BAD_REQUEST, RESPONSE_MESSAGES.ERROR_EMAIL_EXISTS);
+             }
+ 
+             // checking cell number if it exist in database or not
+             console.log(">>>>>>>>>> Checking cell number");
+             let cellNoExists = await this.userUtils.checkCellNoById(data.cellNumber, data.id);
+             if(cellNoExists){
+                 console.log("Provided cell number already exists");
+                 throw new Exception(STATUS_CODES.BAD_REQUEST, RESPONSE_MESSAGES.ERROR_CELLNO_EXISTS);
+             }
+
+             let userObject = {
+                FIRST_NAME: data.firstName,
+                LAST_NAME: data.lastName,
+                EMAIL: data.email,
+                CELL_NUMBER: data.cellNumber,
+                IS_PROVIDER: data.isProvider,
+            }
+
+            console.log(">>>>>>>>>>>> Updating user in Database", userObject)
+
+            // Calling user model to update the user data in database
+            let updatedUser = await userModel.updateUser(userObject, data.id);
+
+            console.log(">>>>>>>>>>>>> Updated USER: ", updatedUser);
+
+            // returning updated user
+            return updatedUser[0];
+
+        }
+        catch (err){
+            throw err;
+        }
+
+    }
+
+
+    async getUserById(id) {
+        try{
+
+            let user = await userModel.getUserById(id);
+
+            console.log(user);
+
+            return user ?? null;
+
+        }
+        catch (err){
+            throw err;
+        }
+
+    }
+
+
 
 }
 

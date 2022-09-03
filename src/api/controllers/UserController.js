@@ -148,6 +148,50 @@ class UserController extends BaseController {
         }
     }
 
+
+    async updateProfile(req, res) {
+
+        try{
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>> UPDATE PROFILE API <<<<<<<<<<<<<<<<<<<<<<<<<");
+
+            console.log(">>>>>> BODY: ", JSON.stringify(req.body));
+
+            // calling signup fucntion from user service
+            let updatedUser = await this.userService.updateProfile(req.body);
+            
+            // returning response
+            res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.PROFILE_UPDATE, updatedUser);
+            
+
+        }
+        catch (err){
+            console.log(err);
+            this.handleExceptions(err, res);
+        }
+    
+    }
+
+
+    async getUserById(req, res) {
+        try{
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>> GET USER API <<<<<<<<<<<<<<<<<<<<<<<<<");
+
+            console.log(">>>>>> PARAMS: ", JSON.stringify(req.params));
+
+            // calling signup fucntion from user service
+            let user = await this.userService.getUserById(req.params.id);
+            
+            // returning response
+            res.success(STATUS_CODES.SUCCESS, RESPONSE_MESSAGE.SUCCESS, user);
+
+        }
+        catch (err){
+            console.log(err);
+            this.handleExceptions(err, res);
+        }
+
+    }
+
 }
 
 
