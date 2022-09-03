@@ -28,6 +28,9 @@ const getCellNoById = async (cell, id) => db('USER').select('ID').where({CELL_NU
 const updateUser = async (obj, id) => db('USER').where({ID: id}).update(obj).returning('*');
 
 
+const getUsersList = async (ids) => db('USER').whereIn('USER.ID', ids).orderBy('USER.ID').select('*');
+
+
 module.exports = {
     getEmail,
     getCellNo,
@@ -38,5 +41,6 @@ module.exports = {
     updateByMobile,
     getEmailById,
     getCellNoById,
-    updateUser
+    updateUser,
+    getUsersList
 }

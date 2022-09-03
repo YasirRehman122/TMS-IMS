@@ -14,6 +14,7 @@ router.post('/forgetPassword', controller.forgetPassword.bind(controller));
 router.post('/changePassword', Authentication, controller.changePassword.bind(controller));
 router.put('/update', Authentication, controller.updateProfile.bind(controller));
 router.get('/:id', Authentication, controller.getUserById.bind(controller));
+router.post('/get-users', controller.getUsersList.bind(controller));
 
 
 module.exports = router
