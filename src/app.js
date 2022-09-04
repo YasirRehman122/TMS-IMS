@@ -3,6 +3,7 @@ const env  = require('./env');
 const express = require('express');
 const bodyParser = require('body-parser');
 const indexRouter = require('./api/routes/index');
+const cors = require('cors');
 // const eurekaHelper = require('../src/api/helper/eureka-helper');
 const port = process.env.PORT || 4000;
 
@@ -27,6 +28,14 @@ const port = process.env.PORT || 4000;
 
 // Initialize our app
 const app = express();
+app.use(cors());
+app.get('/customer', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+});
+app.get('/provider', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+});
+
 
 app.use(express.json());
 app.use(
