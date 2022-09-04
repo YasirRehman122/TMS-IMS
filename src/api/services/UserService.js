@@ -94,6 +94,8 @@ class UserService extends BaseService{
 
             console.log(">>>>>>>>>>>>> NEW USER: ", newUser);
 
+            newUser[0].token = await this.userUtils.createToken(newUser);
+
             // returning new user which is just created
             return newUser[0];
 
