@@ -12,9 +12,15 @@ let db = knex({
     user: dbConfig[process.env.NODE_ENV].username,
     password: dbConfig[process.env.NODE_ENV].password,
     database: dbConfig[process.env.NODE_ENV].database,
+<<<<<<< HEAD
   //   ssl: {    /* <----- Add SSL option */
   //   rejectUnauthorized: false,
   // },
+=======
+  //   ssl: {    /* <----- Add SSL option */
+  //   rejectUnauthorized: false,
+  // },
+>>>>>>> 2de86c1732005301277e2e8aaa267dcb0e8300c4
     // port: 5444,
     pool: {
       autostart: true,
